@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: smart-inventory-intelligence-backend
+    runtime: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: MONGODB_URI
+        sync: false
+      - key: DATABASE_NAME
+        value: inventory_management
+      - key: CORS_ORIGINS
+        value: http://localhost:5173,https://your-frontend.vercel.app
